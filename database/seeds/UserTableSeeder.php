@@ -1,29 +1,23 @@
 <?php
-
 use App\User;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
 	public function run()
 	{
 		// admin
 		$user = User::create([
-			'name'     => '管理者',
-			'email'    => 'admin@localhost',
+			'name'     => 'web管理責任者',
+			'email'    => 'admin@gmail.com',
 			'password' => Hash::make('admin'),
 		]);
 		$user->assignRole('admin');
 
 		// manager
 		$user = User::create([
-			'name'     => 'マネージャー',
-			'email'    => 'manager@localhost',
+			'name'     => 'ecサイトマネージャ',
+			'email'    => 'manager@gmail.com',
 			'password' => Hash::make('manager'),
 		]);
 		$user->assignRole('manager');
@@ -31,9 +25,17 @@ class UserTableSeeder extends Seeder
 		// staff
 		$user = User::create([
 			'name'     => 'スタッフ',
-			'email'    => 'staff@localhost',
+			'email'    => 'staff@gmail.com',
 			'password' => Hash::make('staff'),
 		]);
-		$user->assignRole('staff');
+		$user->assignRole('staff');	
+
+		// テスト客
+		$user = User::create([
+			'name'     => 'テストカスタマー',
+			'email'    => 'test@gmail.com',
+			'password' => Hash::make('test'),
+		]);
+		$user->assignRole('customer');	
 	}
 }
