@@ -9,6 +9,9 @@ Route::get('/hello', function() {
 	return 'Hello world';
 });
 
-//ログイン状態
+//item
+Route::get('/item', 'ItemController@index')->name('item');
+
+//ホーム画面 -> ログインチェック
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
