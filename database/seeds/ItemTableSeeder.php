@@ -6,32 +6,33 @@ class ItemTableSeeder extends Seeder
 {
 	public function run()
 	{
-		// admin
+		// CPU
 		$item = Item::create([
-			'name'     => 'web管理責任者',
-			'email'    => 'admin@gmail.com',
-			'password' => Hash::make('admin'),
+			'name'     => 'Core i7 9700K BOX',
+			'content'    => '8C 8T 3.6GHz LGA1151',
+			'price' => 43464,
+			'quantity' => 10,
 		]);
 
-		// manager
 		$item = Item::create([
-			'name'     => 'ecサイトマネージャ',
-			'email'    => 'manager@gmail.com',
-			'password' => Hash::make('manager'),
+			'name'     => 'Core i5 9600 BOX',
+			'content'    => '6C 6T 3.1GHz LGA1151',
+			'price' => 26723,
+			'quantity' => 15,
 		]);
 
-		// staff
 		$item = Item::create([
-			'name'     => 'スタッフ',
-			'email'    => 'staff@gmail.com',
-			'password' => Hash::make('staff'),
+			'name'     => 'Core i3 9100 BOX',
+			'content'    => '4C 4T 3.6GHz LGA1151',
+			'price' => 15787,
+			'quantity' => 14,
 		]);
 
-		// テスト客
 		$item = Item::create([
-			'name'     => 'テストカスタマー',
-			'email'    => 'test@gmail.com',
-			'password' => Hash::make('test'),
+			'name'     => 'Pentium Gold G5400 BOX',
+			'content'    => '2C 4T 3.7GHz LGA1151',
+			'price' => 6770,
+			'quantity' => 5,
 		]);
 	}
 }
