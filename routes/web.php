@@ -11,6 +11,7 @@ Route::get('/hello', function() {
 
 //item
 Route::get('/item', 'ItemController@index')->name('item');
+Route::get('/detail{id}', 'ItemController@detail')->name('item.detail');
 
 //ホーム画面 -> ログインチェック
 Auth::routes();

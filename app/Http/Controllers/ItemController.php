@@ -1,43 +1,25 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//eloquent:Itemクラス宣言
+use App\Item;
 
 class ItemController extends Controller
 {
-    //
+    //商品一覧
     public function index()
     {
-		$var = 'ControllerToView !!';
-        return view('item.index', compact('var'));
-        //return 'Hello ItemController !!';
-    }
+		$items = Item::all();
+		return view('item.index', compact('items'));
+		//debug
+		//foreach ($items as $item) {
+		//	echo $item->name . '<br>';
+		//}
+	}
+	//商品詳細
+	public function detail($id) {
+		$item = Item::find($id);
+		return view('item.detail', compact('item'));
+	}
 }
-
-//namespace App\Http\Controllers;
-//
-//use Illuminate\Http\Request;
-//
-//class HomeController extends Controller
-//{
-//    /**
-//     * Create a new controller instance.
-//     *
-//     * @return void
-//     */
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
-//
-//    /**
-//     * Show the application dashboard.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        return view('home');
-//    }
-//}
