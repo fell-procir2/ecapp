@@ -1,3 +1,9 @@
+<?php
+//adminログイン画面から通常ログイン画面に移動時はフラグをリセット
+if (!Auth::check()) {
+	session(['enter' => null]);
+}
+?>
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>

@@ -22,4 +22,7 @@ class ItemController extends Controller
 		$item = Item::find($id);
 		return view('item.detail', compact('item'));
 	}
+	public function role($role) {
+		echo $role;
+	}
 }
