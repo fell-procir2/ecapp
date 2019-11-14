@@ -13,14 +13,60 @@
 </head>
 <body>
     <!-- Styles -->
-		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-		<!-- 属性によってログイン画面の背景色変更 -->
-		@if (session('enter') !== null)
-			@hasrole('admin')
-			@else
-				<style>body{background-color: tomato;}</style>
-			@endhasrole
-		@endif
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<style>
+		h1 { font-size: 17px; }
+		h2 { font-size: 15px; }
+		.screen_wrap { padding: 0px 15px 15px; }
+		td, th {
+			padding: 5px 10px;
+		}
+		form {
+			/* Just to center the form on the page */
+			margin: 0 left;
+			width: 400px;
+			/* To see the outline of the form
+			padding: 1em;
+			border: 1px solid #CCC;
+			border-radius: 1em;*/
+		}
+		form div + div {
+			margin-top: 1em;
+		}
+		label {
+			/* To make sure that all labels have the same size and are properly aligned */
+			display: inline-block;
+			width: 90px;
+			text-align: right;
+		}
+		input, textarea {
+			/* To make sure that all text fields have the same font settings By default, textareas have a monospace font */
+			font: 1em sans-serif;
+			/* To give the same size to all text fields */
+			width: 300px;
+			box-sizing: border-box; /* To harmonize the look & feel of text field border */
+			border: 1px solid #999;
+		}
+		input:focus, textarea:focus {
+			/* To give a little highlight on active elements */
+			border-color: #000;
+		}
+		textarea {
+			/* To properly align multiline text fields with their labels */
+			vertical-align: top;
+			/* To give enough room to type some text */
+			height: 5em;
+		}
+		.button {
+			/* To position the buttons to the same position of the text fields */
+			padding-left: 90px;
+			/* same size as the label elements */
+		}
+		button {
+			/* This extra margin represent roughly the same space as the space between the labels and their text fields */
+			margin-left: .5em;
+		}
+	</style>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -79,8 +125,17 @@
             </div>
         </nav>
 
-        @yield('content')
     </div>
+<div class="screen_wrap">
+	<div class="container py-4">
+        {{-- フラッシュメッセージの表示 --}}
+		@if (session('message'))
+			<div class="alert alert-success">{{ session('message') }}</div>
+        @endif
+        {{-- コンテンツの表示 --}}
+		@yield('content')
+	</div>
+</div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

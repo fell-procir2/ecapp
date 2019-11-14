@@ -1,9 +1,11 @@
-@section('title', '商品一覧')
-@section('body')
+@extends('layouts.mini_app')
+@section('content')
+<body>
 <table>
+<h1>商品一覧</h1>
 	<tr style="background-color:#e3f0fb">
 		<th>商品名</th>
-		<th>値段</th>
+		<th>価格</th>
 		<th>在庫</th>
 	</tr>
 	@foreach ($items as $item)
@@ -18,3 +20,13 @@
 		</tr>
 	@endforeach
 </table>
+@role('admin')
+	<br>
+	<!-- 商品追加のリンク -->
+	<form method="get" action="{{ route('item.edit') }}">
+		{{ csrf_field() }}
+		<button type="submit">新規作成</button>
+	</form>
+@endrole
+</body>
+@endsection
