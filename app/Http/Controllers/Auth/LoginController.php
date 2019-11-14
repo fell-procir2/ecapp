@@ -26,7 +26,13 @@ class LoginController extends Controller
      * ログイン後のリダイレクト先
      * @var string
      */
-    protected $redirectTo = '/home';
+	protected function redirectTo() {
+		if (auth()->user()->hasRole('admin')) {
+			return '/item';
+		} else {
+			return '/home';
+		}
+	}
 
     /**
      * Create a new controller instance.
