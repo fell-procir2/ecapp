@@ -4,20 +4,11 @@
 Route::view('/', 'welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Cart: logined && customer
-Route::group(['middleware' => ['web']], function() {
-	Route::group(['middleware' => ['role:customer']], function() {
-		Route::get('/cart', 'CartController@index')->name('cart.index');//一覧
-		Route::post('/cart/add', 'CartController@add')->name('cart.add');//追加
-		Route::post('/cart/delete', 'CartController@delete')->name('cart.delete');//削除
-	});
-});
-
 //item
 Route::get('/item', 'ItemController@index')->name('item.index');
 Route::get('/item/detail/{id}', 'ItemController@detail')->name('item.detail');
 
-//Item: logined && admin
+//logined && admin
 Route::group(['middleware' => ['web']], function() {
 	Route::group(['middleware' => ['role:admin']], function() {
 		//共用get

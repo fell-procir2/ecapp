@@ -25,6 +25,22 @@
 			<button type="submit">商品の編集</button>
 		</form>
 	@endrole
+	@auth
+		@role('customer')
+			<br>
+			@if (0 < $item->quantity)
+				<form method="post" action="{{ route('cart.add') }}">
+					{{ csrf_field() }}
+					<button type="submit">カートに入れる</button>
+				</form>
+			@else
+				<h2>在庫がありません</h2>
+			@endif
+		@endrole
+	@else
+		<br>
+		<h2>ログインしてください。</h2>
+	@endauth
 	<h2><a href="{{ route('item.index') }}">商品一覧へ戻る</a></h2>
 </body>
 @endsection
