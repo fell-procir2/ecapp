@@ -9,7 +9,7 @@ use App\Cart;
 class CartController extends Controller
 {
 	public function index() {
-		$carts = (new Cart)->all_get(Auth::id());
+		$carts = (new Cart)->allGet(Auth::id());
 		$subtotals = $this->subtotals($carts);
 		$totals = $this->totals($carts);
 		return view('cart.index', compact('carts', 'totals', 'subtotals'));
@@ -32,7 +32,7 @@ class CartController extends Controller
 	public function add() {
 		$item_id = session('id');
 		if (isset($item_id)) {
-			if ((new Cart)->add_db($item_id, 1)) {
+			if ((new Cart)->addDb($item_id, 1)) {
 				set_message('商品をカートに入れました');
 			} else {
 				set_message('在庫が足りません', false);
@@ -45,7 +45,7 @@ class CartController extends Controller
 	}
 	public function delete(Request $request) {
 		$cart_id = $request->input('cart_id');
-		if ((new Cart)->soft_delete_db($cart_id)) {
+		if ((new Cart)->softDeleteDb($cart_id)) {
 			$request->session()->regenerateToken();
 			set_message('カートから商品を削除しました');
 		} else {

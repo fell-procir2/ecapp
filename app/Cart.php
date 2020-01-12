@@ -16,11 +16,11 @@ class Cart extends Model
 	public function item() {
 		return $this->belongsTo('App\Item', 'item_id');
 	}
-	public function all_get($auth_id) {
+	public function allGet($auth_id) {
 		$carts = $this->where('user_id', $auth_id)->get();
 		return $carts;
 	}
-	public function add_db(int $item_id, $add_qty) {
+	public function addDb(int $item_id, $add_qty) {
 		$item = (new Item)->findOrFail($item_id);
 		$qty = $item->quantity;
 		if ($qty <= 0 || $qty < $add_qty) {
@@ -33,7 +33,7 @@ class Cart extends Model
 		session()->forget('id');
 		return true;
 	}
-	public function soft_delete_db($cart_id) {
+	public function softDeleteDb($cart_id) {
 		$cart = $this->find($cart_id);
 		if ($cart->user_id == Auth::id()) {
 			$item_id = $cart->item_id;
@@ -45,7 +45,7 @@ class Cart extends Model
 		}
 		return false;
 	}
-	public function subtotal() {
+	public function subTotal() {
 		$result = $this->item->price * $this->quantity;
 		return $result;
 	}

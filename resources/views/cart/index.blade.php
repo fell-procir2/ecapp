@@ -28,10 +28,18 @@
 			<td></td>
 		</td>
 	</table>
+	<br>
+	<form method="get" action="{{ route('address.index') }}">
+		{{ csrf_field() }}
+		<button type="submit">お届け先選択</button>
+	</form>
 @else
 	<h1>カートに商品はありません</h1>
 @endif
 <br>
-<h2><a href="{{ route('item.index') }}">商品一覧へ戻る</a></h2>
+<form method="get" action="{{ route('item.index') }}">
+	{{ csrf_field() }}
+	<button type="submit">商品一覧</button>
+</form>
 </body>
 @endsection

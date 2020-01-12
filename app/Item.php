@@ -10,20 +10,20 @@ class Item extends Model
 	//DBテーブルを指定
 	protected $table = 'items';
 
-	public function all_get() {
+	public function allGet() {
 		return $this->all();
 	}
-	public function find_get($id) {
+	public function findGet($id) {
 		return $this->find($id);
 	}
-	public function create_db($request) {
+	public function createDb($request) {
 		$name = $request->input('name');
 		$content = $request->input('content');
 		$price = $request->input('price');
 		$quantity = $request->input('quantity');
 		$this->create(compact('name', 'content', 'price', 'quantity'));
 	}
-	public function update_db($id, $request) {
+	public function updateDb($id, $request) {
 		$item = $this->findOrFail($id);
 		$item->fill(['name' => $request->input('name')]);
 		$item->fill(['content' => $request->input('content')]);

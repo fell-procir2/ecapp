@@ -135,8 +135,10 @@
 			@else
 				<div class="alert alert-danger">{{ session('message') }}</div>
 			@endif
-			<?php session()->flash('message', null); ?>
-			<?php session()->flash('is_succes', null); ?>
+			<?php
+			session()->flash('message', null);
+			session()->flash('is_succes', null);
+			?>
         @endif
         {{-- コンテンツの表示 --}}
 		@yield('content')
