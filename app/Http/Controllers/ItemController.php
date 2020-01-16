@@ -9,12 +9,12 @@ class ItemController extends Controller
 {
     public function index() {
 		session(['id' => '']);
-		$items = Item::all();
+		$items = (new Item)->allGet();
 		return view('item.index', compact('items'));
 	}
 	public function detail($id) {
 		session(['id' => $id]);
-		$item = Item::find($id);
+		$item = (new Item)->findGet($id);
 		return view('item.detail', compact('item'));
 	}
 	public function edit(Request $request) {
@@ -25,22 +25,14 @@ class ItemController extends Controller
 		return view('item.edit', compact('name', 'content', 'price', 'quantity'));
 	}
 	public function create(ItemRequest $request) {
-		//追加処理
-		$name = $request->input('name');
-		$content = $request->input('content');
-		$price = $request->input('price');
-		$quantity = $request->input('quantity');
-		$item = Item::create(compact('name', 'content', 'price', 'quantity'));
-		return redirect(route('item.index'))->with('message', '商品を追加しました。');
+		(new Item)->createDb($request);
+		set_message('商品を追加しました。');
+		return redirect(route('item.index'));
 	}
 	public function update(ItemRequest $request) {
 		$id = session('id');
-		//編集処理
-		$item = Item::findOrFail($id);
-		$item->fill(['name' => $request->input('name')]);
-		$item->fill(['content' => $request->input('content')]);
-		$item->fill(['quantity' => $request->input('quantity')]);
-		$item->save();
-		return redirect(route('item.detail', ['id' => $id]))->with('message', '内容を修正しました。');
+		(new Item)->updateDb($id, $request);
+		set_message('内容を修正しました。');
+		return redirect(route('item.detail', ['id' => $id]));
 	}
 }

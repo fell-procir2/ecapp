@@ -130,7 +130,15 @@
 	<div class="container py-4">
         {{-- フラッシュメッセージの表示 --}}
 		@if (session('message'))
-			<div class="alert alert-success">{{ session('message') }}</div>
+			@if (session('is_success'))
+				<div class="alert alert-success">{{ session('message') }}</div>
+			@else
+				<div class="alert alert-danger">{{ session('message') }}</div>
+			@endif
+			<?php
+			session()->flash('message', null);
+			session()->flash('is_succes', null);
+			?>
         @endif
         {{-- コンテンツの表示 --}}
 		@yield('content')

@@ -20,6 +20,11 @@
 		</tr>
 	@endforeach
 </table>
+<br>
+<form method="get" action="{{ route('cart.index') }}">
+	{{ csrf_field() }}
+	<button type="submit">カート内容を見る</button>
+</form>
 @role('admin')
 	<br>
 	<!-- 商品追加のリンク -->
