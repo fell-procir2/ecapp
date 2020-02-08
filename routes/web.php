@@ -1,6 +1,4 @@
 <?php
-//test && debug
-Route::get('/test', 'TestController@run')->name('test');
 
 //welcome/home
 Route::view('/', 'welcome');
