@@ -29,8 +29,6 @@ class LoginController extends Controller
 	protected function redirectTo() {
 		if (auth()->user() !== null && auth()->user()->hasRole('admin')) {
 			return route('item.index');
-		} else {
-			return route('home');
 		}
 	}
 

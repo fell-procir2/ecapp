@@ -1,8 +1,8 @@
 <?php
 
 //welcome/home
-Route::view('/', 'welcome');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'ItemController@index')->name('item.index');
+Route::get('/home', 'HomeController@index')->name('item.index');
 
 //Cart & Address: logined && customer
 Route::group(['middleware' => ['web']], function() {
